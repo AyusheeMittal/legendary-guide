@@ -1,5 +1,6 @@
 The value of print(score) is [0.038257713587692754, 0.9915]
 
+Definitions :
 1.	Convolution is convolving the entire input image with a filter and get a feature as an output.
 2.	Kernel is the matrix that will extract the particular type of feature from the input.
 3.	No of epochs is the number of times our model has been trained on the dataset. 
