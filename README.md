@@ -1,1 +1,2 @@
-# legendary-guide
+print(score) 
+[0.038257713587692754, 0.9915]
