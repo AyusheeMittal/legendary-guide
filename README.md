@@ -1,4 +1,5 @@
 The value of print(score) is [0.018910792756626323, 0.9941]
+
 Logs for 20 epochs :
 Train on 60000 samples, validate on 10000 samples
 Epoch 1/20
