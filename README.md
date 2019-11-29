@@ -1,4 +1,4 @@
-Assignment 3:
+#Assignment 3:
 
 The value of Validation accuracy after 50 epochs of the already given network - val_acc: 0.8303
 
@@ -66,7 +66,7 @@ model2.compile(optimizer=Adam(0.003), loss='categorical_crossentropy', metrics=[
 model2.summary()
 
 
-Logs:
+#Logs:
 
 Epoch 1/50
 
