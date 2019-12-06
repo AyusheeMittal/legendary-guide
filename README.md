@@ -1,272 +1,255 @@
-#Assignment 3:
-
-The value of Validation accuracy after 50 epochs of the already given network - val_acc: 0.8303
-
-The value of final Validation accuracy after50 epochs when the network is modified - val_acc: 0.8259 (44th Epoch)
-
-Model Definition:
-
-# Define the model
-model_input = Input((32,32,3))
-model2 = SeparableConv2D(40, (3,3), padding='same') (model_input)  #Output:32,32,40   RF:3
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = SeparableConv2D(40, (3,3)) (model2)  #Output:30,30,40   RF:5
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model = SeparableConv2D(40, (3,3), padding='same') (model2)  #Output:30,30,40   RF:7
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = MaxPooling2D() (model2)  #Output:15,15,40   RF:8
-model2 = Dropout(0.15) (model2)
-
-model2 = SeparableConv2D(80, (3,3), padding='same') (model2)  #Output:15,15,80   RF:12
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = SeparableConv2D(80, (3,3)) (model2)  #Output:13,13,80   RF:16
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = SeparableConv2D(80, (3,3), padding='same') (model2)  #Output:13,13,80   RF20
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = MaxPooling2D() (model2)  #Output:6,6,80   RF:22
-model2 = Dropout(0.15) (model2)
-
-model2 = SeparableConv2D(160, (3,3), padding='same') (model2)  #Output:6,6,160   RF:30
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = SeparableConv2D(160, (3,3)) (model2)  #Output:4,4,160   RF:38
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = SeparableConv2D(160, (3,3), padding='same') (model2) #Output:4,4,160   RF:46
-model2 = BatchNormalization() (model2)
-model2 = Activation('relu') (model2)
-
-model2 = MaxPooling2D() (model2)  #Output:2,2,160   RF:50
-model2 = Dropout(0.15) (model2)
-
-model2 = SeparableConv2D(10, (2,2)) (model2)  #Output:1,1,10   RF:58
-model2 = Flatten() (model2)
-model2 = Activation('softmax') (model2)
-
-model2 = Model(inputs = model_input, outputs = model2)
-
-# Compile the model
-def scheduler(epoch, lr):
-  return round(0.003 * 1/(1+0.319 * epoch),10)
-model2.compile(optimizer=Adam(0.003), loss='categorical_crossentropy', metrics=['accuracy'])
-model2.summary()
-
-
-#Logs:
-
+# Assignment 4B:
+Logs:-
 Epoch 1/50
+Learning rate:  0.001
+391/391 [==============================] - 41s 104ms/step - loss: 1.7900 - acc: 0.4126 - val_loss: 1.7648 - val_acc: 0.4727
 
-Epoch 00001: LearningRateScheduler setting learning rate to 0.003.
-1562/1562 [==============================] - 39s 25ms/step - loss: 1.4296 - acc: 0.4853 - val_loss: 1.8378 - val_acc: 0.4409
+Epoch 00001: val_acc improved from -inf to 0.47270, saving model to /content/saved_models/cifar10_ResNet20v1_model.001.h5
 Epoch 2/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 88ms/step - loss: 1.4008 - acc: 0.5517 - val_loss: 1.5321 - val_acc: 0.5225
 
-Epoch 00002: LearningRateScheduler setting learning rate to 0.0022744503.
-1562/1562 [==============================] - 37s 23ms/step - loss: 1.0507 - acc: 0.6279 - val_loss: 0.9639 - val_acc: 0.6652
+Epoch 00002: val_acc improved from 0.47270 to 0.52250, saving model to /content/saved_models/cifar10_ResNet20v1_model.002.h5
 Epoch 3/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 88ms/step - loss: 1.2360 - acc: 0.6124 - val_loss: 1.4364 - val_acc: 0.5588
 
-Epoch 00003: LearningRateScheduler setting learning rate to 0.0018315018.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.9049 - acc: 0.6820 - val_loss: 1.0389 - val_acc: 0.6516
+Epoch 00003: val_acc improved from 0.52250 to 0.55880, saving model to /content/saved_models/cifar10_ResNet20v1_model.003.h5
 Epoch 4/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 1.1152 - acc: 0.6555 - val_loss: 1.2830 - val_acc: 0.6158
 
-Epoch 00004: LearningRateScheduler setting learning rate to 0.0015329586.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.8182 - acc: 0.7139 - val_loss: 1.0685 - val_acc: 0.6456
+Epoch 00004: val_acc improved from 0.55880 to 0.61580, saving model to /content/saved_models/cifar10_ResNet20v1_model.004.h5
 Epoch 5/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 1.0304 - acc: 0.6869 - val_loss: 1.1299 - val_acc: 0.6672
 
-Epoch 00005: LearningRateScheduler setting learning rate to 0.0013181019.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.7668 - acc: 0.7340 - val_loss: 0.8284 - val_acc: 0.7168
+Epoch 00005: val_acc improved from 0.61580 to 0.66720, saving model to /content/saved_models/cifar10_ResNet20v1_model.005.h5
 Epoch 6/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 88ms/step - loss: 0.9618 - acc: 0.7152 - val_loss: 0.9860 - val_acc: 0.7107
 
-Epoch 00006: LearningRateScheduler setting learning rate to 0.0011560694.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.7199 - acc: 0.7472 - val_loss: 0.9719 - val_acc: 0.6771
+Epoch 00006: val_acc improved from 0.66720 to 0.71070, saving model to /content/saved_models/cifar10_ResNet20v1_model.006.h5
 Epoch 7/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.9126 - acc: 0.7314 - val_loss: 0.9959 - val_acc: 0.6944
 
-Epoch 00007: LearningRateScheduler setting learning rate to 0.0010295127.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.6895 - acc: 0.7607 - val_loss: 0.8482 - val_acc: 0.7211
+Epoch 00007: val_acc did not improve from 0.71070
 Epoch 8/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.8763 - acc: 0.7450 - val_loss: 0.9183 - val_acc: 0.7337
 
-Epoch 00008: LearningRateScheduler setting learning rate to 0.0009279307.
-1562/1562 [==============================] - 37s 24ms/step - loss: 0.6635 - acc: 0.7690 - val_loss: 0.7707 - val_acc: 0.7415
+Epoch 00008: val_acc improved from 0.71070 to 0.73370, saving model to /content/saved_models/cifar10_ResNet20v1_model.008.h5
 Epoch 9/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.8420 - acc: 0.7568 - val_loss: 0.8847 - val_acc: 0.7431
 
-Epoch 00009: LearningRateScheduler setting learning rate to 0.0008445946.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.6443 - acc: 0.7755 - val_loss: 0.7547 - val_acc: 0.7439
+Epoch 00009: val_acc improved from 0.73370 to 0.74310, saving model to /content/saved_models/cifar10_ResNet20v1_model.009.h5
 Epoch 10/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.8055 - acc: 0.7706 - val_loss: 1.0398 - val_acc: 0.7022
 
-Epoch 00010: LearningRateScheduler setting learning rate to 0.0007749935.
-1562/1562 [==============================] - 37s 24ms/step - loss: 0.6203 - acc: 0.7854 - val_loss: 0.6557 - val_acc: 0.7824
+Epoch 00010: val_acc did not improve from 0.74310
 Epoch 11/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.7851 - acc: 0.7768 - val_loss: 1.3881 - val_acc: 0.6432
 
-Epoch 00011: LearningRateScheduler setting learning rate to 0.0007159905.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.6046 - acc: 0.7897 - val_loss: 0.6793 - val_acc: 0.7765
+Epoch 00011: val_acc did not improve from 0.74310
 Epoch 12/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.7615 - acc: 0.7855 - val_loss: 1.2227 - val_acc: 0.6549
 
-Epoch 00012: LearningRateScheduler setting learning rate to 0.000665336.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.5880 - acc: 0.7958 - val_loss: 0.7051 - val_acc: 0.7671
+Epoch 00012: val_acc did not improve from 0.74310
 Epoch 13/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.7451 - acc: 0.7896 - val_loss: 1.5235 - val_acc: 0.6137
 
-Epoch 00013: LearningRateScheduler setting learning rate to 0.0006213753.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.5792 - acc: 0.7987 - val_loss: 0.6505 - val_acc: 0.7790
+Epoch 00013: val_acc did not improve from 0.74310
 Epoch 14/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.7218 - acc: 0.7993 - val_loss: 0.7731 - val_acc: 0.7832
 
-Epoch 00014: LearningRateScheduler setting learning rate to 0.0005828638.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.5644 - acc: 0.8039 - val_loss: 0.6888 - val_acc: 0.7747
+Epoch 00014: val_acc improved from 0.74310 to 0.78320, saving model to /content/saved_models/cifar10_ResNet20v1_model.014.h5
 Epoch 15/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.7030 - acc: 0.8053 - val_loss: 1.3693 - val_acc: 0.6576
 
-Epoch 00015: LearningRateScheduler setting learning rate to 0.0005488474.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.5546 - acc: 0.8067 - val_loss: 0.5900 - val_acc: 0.8039
+Epoch 00015: val_acc did not improve from 0.78320
 Epoch 16/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.6959 - acc: 0.8076 - val_loss: 0.7646 - val_acc: 0.7922
 
-Epoch 00016: LearningRateScheduler setting learning rate to 0.0005185825.
-1562/1562 [==============================] - 37s 24ms/step - loss: 0.5450 - acc: 0.8109 - val_loss: 0.6431 - val_acc: 0.7883
+Epoch 00016: val_acc improved from 0.78320 to 0.79220, saving model to /content/saved_models/cifar10_ResNet20v1_model.016.h5
 Epoch 17/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 84ms/step - loss: 0.6822 - acc: 0.8131 - val_loss: 0.8936 - val_acc: 0.7610
 
-Epoch 00017: LearningRateScheduler setting learning rate to 0.000491481.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.5340 - acc: 0.8134 - val_loss: 0.6515 - val_acc: 0.7819
+Epoch 00017: val_acc did not improve from 0.79220
 Epoch 18/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.6692 - acc: 0.8177 - val_loss: 0.7019 - val_acc: 0.8076
 
-Epoch 00018: LearningRateScheduler setting learning rate to 0.0004670715.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.5252 - acc: 0.8152 - val_loss: 0.6674 - val_acc: 0.7792
+Epoch 00018: val_acc improved from 0.79220 to 0.80760, saving model to /content/saved_models/cifar10_ResNet20v1_model.018.h5
 Epoch 19/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.6612 - acc: 0.8208 - val_loss: 0.7841 - val_acc: 0.7876
 
-Epoch 00019: LearningRateScheduler setting learning rate to 0.0004449718.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.5203 - acc: 0.8181 - val_loss: 0.6465 - val_acc: 0.7826
+Epoch 00019: val_acc did not improve from 0.80760
 Epoch 20/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.6429 - acc: 0.8263 - val_loss: 0.7672 - val_acc: 0.7950
 
-Epoch 00020: LearningRateScheduler setting learning rate to 0.000424869.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.5098 - acc: 0.8231 - val_loss: 0.6018 - val_acc: 0.7998
+Epoch 00020: val_acc did not improve from 0.80760
 Epoch 21/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.6365 - acc: 0.8300 - val_loss: 0.9424 - val_acc: 0.7595
 
-Epoch 00021: LearningRateScheduler setting learning rate to 0.0004065041.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.5081 - acc: 0.8205 - val_loss: 0.6189 - val_acc: 0.8013
+Epoch 00021: val_acc did not improve from 0.80760
 Epoch 22/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.6292 - acc: 0.8311 - val_loss: 0.6619 - val_acc: 0.8218
 
-Epoch 00022: LearningRateScheduler setting learning rate to 0.000389661.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4962 - acc: 0.8254 - val_loss: 0.6159 - val_acc: 0.8006
+Epoch 00022: val_acc improved from 0.80760 to 0.82180, saving model to /content/saved_models/cifar10_ResNet20v1_model.022.h5
 Epoch 23/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.6196 - acc: 0.8368 - val_loss: 0.7465 - val_acc: 0.8061
 
-Epoch 00023: LearningRateScheduler setting learning rate to 0.0003741581.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4940 - acc: 0.8257 - val_loss: 0.6329 - val_acc: 0.7933
+Epoch 00023: val_acc did not improve from 0.82180
 Epoch 24/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 88ms/step - loss: 0.6130 - acc: 0.8361 - val_loss: 0.7187 - val_acc: 0.8130
 
-Epoch 00024: LearningRateScheduler setting learning rate to 0.0003598417.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4901 - acc: 0.8281 - val_loss: 0.5855 - val_acc: 0.8101
+Epoch 00024: val_acc did not improve from 0.82180
 Epoch 25/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.6017 - acc: 0.8414 - val_loss: 0.9726 - val_acc: 0.7427
 
-Epoch 00025: LearningRateScheduler setting learning rate to 0.0003465804.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4825 - acc: 0.8332 - val_loss: 0.6133 - val_acc: 0.7993
+Epoch 00025: val_acc did not improve from 0.82180
 Epoch 26/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.5986 - acc: 0.8424 - val_loss: 0.7495 - val_acc: 0.8056
 
-Epoch 00026: LearningRateScheduler setting learning rate to 0.0003342618.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4838 - acc: 0.8291 - val_loss: 0.6174 - val_acc: 0.8037
+Epoch 00026: val_acc did not improve from 0.82180
 Epoch 27/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.5938 - acc: 0.8439 - val_loss: 0.7947 - val_acc: 0.7852
 
-Epoch 00027: LearningRateScheduler setting learning rate to 0.0003227889.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4707 - acc: 0.8358 - val_loss: 0.5831 - val_acc: 0.8114
+Epoch 00027: val_acc did not improve from 0.82180
 Epoch 28/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5856 - acc: 0.8473 - val_loss: 0.8418 - val_acc: 0.7787
 
-Epoch 00028: LearningRateScheduler setting learning rate to 0.0003120774.
-1562/1562 [==============================] - 38s 24ms/step - loss: 0.4726 - acc: 0.8341 - val_loss: 0.5554 - val_acc: 0.8160
+Epoch 00028: val_acc did not improve from 0.82180
 Epoch 29/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 87ms/step - loss: 0.5817 - acc: 0.8491 - val_loss: 0.7807 - val_acc: 0.7981
 
-Epoch 00029: LearningRateScheduler setting learning rate to 0.000302054.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4654 - acc: 0.8359 - val_loss: 0.5805 - val_acc: 0.8103
+Epoch 00029: val_acc did not improve from 0.82180
 Epoch 30/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5732 - acc: 0.8540 - val_loss: 0.6919 - val_acc: 0.8191
 
-Epoch 00030: LearningRateScheduler setting learning rate to 0.0002926544.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4610 - acc: 0.8389 - val_loss: 0.6231 - val_acc: 0.8019
+Epoch 00030: val_acc did not improve from 0.82180
 Epoch 31/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5675 - acc: 0.8550 - val_loss: 0.9326 - val_acc: 0.7738
 
-Epoch 00031: LearningRateScheduler setting learning rate to 0.0002838221.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4603 - acc: 0.8394 - val_loss: 0.6192 - val_acc: 0.8026
+Epoch 00031: val_acc did not improve from 0.82180
 Epoch 32/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 84ms/step - loss: 0.5641 - acc: 0.8541 - val_loss: 0.7324 - val_acc: 0.8098
 
-Epoch 00032: LearningRateScheduler setting learning rate to 0.0002755074.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4611 - acc: 0.8373 - val_loss: 0.5897 - val_acc: 0.8104
+Epoch 00032: val_acc did not improve from 0.82180
 Epoch 33/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.5630 - acc: 0.8570 - val_loss: 0.9305 - val_acc: 0.7710
 
-Epoch 00033: LearningRateScheduler setting learning rate to 0.000267666.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4533 - acc: 0.8420 - val_loss: 0.5533 - val_acc: 0.8168
+Epoch 00033: val_acc did not improve from 0.82180
 Epoch 34/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.5626 - acc: 0.8557 - val_loss: 0.7635 - val_acc: 0.7973
 
-Epoch 00034: LearningRateScheduler setting learning rate to 0.0002602585.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4446 - acc: 0.8438 - val_loss: 0.5573 - val_acc: 0.8207
+Epoch 00034: val_acc did not improve from 0.82180
 Epoch 35/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5499 - acc: 0.8604 - val_loss: 0.6411 - val_acc: 0.8373
 
-Epoch 00035: LearningRateScheduler setting learning rate to 0.00025325.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4523 - acc: 0.8406 - val_loss: 0.5579 - val_acc: 0.8180
+Epoch 00035: val_acc improved from 0.82180 to 0.83730, saving model to /content/saved_models/cifar10_ResNet20v1_model.035.h5
 Epoch 36/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5451 - acc: 0.8626 - val_loss: 0.9872 - val_acc: 0.7493
 
-Epoch 00036: LearningRateScheduler setting learning rate to 0.0002466091.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4455 - acc: 0.8443 - val_loss: 0.5802 - val_acc: 0.8146
+Epoch 00036: val_acc did not improve from 0.83730
 Epoch 37/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5429 - acc: 0.8645 - val_loss: 0.9227 - val_acc: 0.7594
 
-Epoch 00037: LearningRateScheduler setting learning rate to 0.0002403076.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4399 - acc: 0.8461 - val_loss: 0.5658 - val_acc: 0.8167
+Epoch 00037: val_acc did not improve from 0.83730
 Epoch 38/50
+Learning rate:  0.001
+391/391 [==============================] - 34s 86ms/step - loss: 0.5465 - acc: 0.8626 - val_loss: 0.6972 - val_acc: 0.8283
 
-Epoch 00038: LearningRateScheduler setting learning rate to 0.0002343201.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4451 - acc: 0.8437 - val_loss: 0.5714 - val_acc: 0.8142
+Epoch 00038: val_acc did not improve from 0.83730
 Epoch 39/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5363 - acc: 0.8671 - val_loss: 0.6873 - val_acc: 0.8193
 
-Epoch 00039: LearningRateScheduler setting learning rate to 0.0002286237.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4348 - acc: 0.8474 - val_loss: 0.5622 - val_acc: 0.8182
+Epoch 00039: val_acc did not improve from 0.83730
 Epoch 40/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5316 - acc: 0.8669 - val_loss: 0.6850 - val_acc: 0.8229
 
-Epoch 00040: LearningRateScheduler setting learning rate to 0.0002231977.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4322 - acc: 0.8476 - val_loss: 0.5736 - val_acc: 0.8160
+Epoch 00040: val_acc did not improve from 0.83730
 Epoch 41/50
+Learning rate:  0.001
+391/391 [==============================] - 33s 85ms/step - loss: 0.5325 - acc: 0.8674 - val_loss: 0.6731 - val_acc: 0.8316
 
-Epoch 00041: LearningRateScheduler setting learning rate to 0.0002180233.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4305 - acc: 0.8472 - val_loss: 0.5565 - val_acc: 0.8197
+Epoch 00041: val_acc did not improve from 0.83730
 Epoch 42/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4651 - acc: 0.8912 - val_loss: 0.4915 - val_acc: 0.8890
 
-Epoch 00042: LearningRateScheduler setting learning rate to 0.0002130833.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4308 - acc: 0.8483 - val_loss: 0.5821 - val_acc: 0.8150
+Epoch 00042: val_acc improved from 0.83730 to 0.88900, saving model to /content/saved_models/cifar10_ResNet20v1_model.042.h5
 Epoch 43/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4413 - acc: 0.8992 - val_loss: 0.5024 - val_acc: 0.8854
 
-Epoch 00043: LearningRateScheduler setting learning rate to 0.0002083623.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4254 - acc: 0.8496 - val_loss: 0.5858 - val_acc: 0.8150
+Epoch 00043: val_acc did not improve from 0.88900
 Epoch 44/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4268 - acc: 0.9038 - val_loss: 0.4985 - val_acc: 0.8862
 
-Epoch 00044: LearningRateScheduler setting learning rate to 0.0002038459.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4199 - acc: 0.8517 - val_loss: 0.5407 - val_acc: 0.8259
+Epoch 00044: val_acc did not improve from 0.88900
 Epoch 45/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4200 - acc: 0.9069 - val_loss: 0.4939 - val_acc: 0.8871
 
-Epoch 00045: LearningRateScheduler setting learning rate to 0.0001995211.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4226 - acc: 0.8511 - val_loss: 0.5549 - val_acc: 0.8217
+Epoch 00045: val_acc did not improve from 0.88900
 Epoch 46/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4178 - acc: 0.9071 - val_loss: 0.5023 - val_acc: 0.8853
 
-Epoch 00046: LearningRateScheduler setting learning rate to 0.0001953761.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4240 - acc: 0.8521 - val_loss: 0.5674 - val_acc: 0.8189
+Epoch 00046: val_acc did not improve from 0.88900
 Epoch 47/50
+Learning rate:  0.0001
+391/391 [==============================] - 33s 85ms/step - loss: 0.4096 - acc: 0.9100 - val_loss: 0.4780 - val_acc: 0.8893
 
-Epoch 00047: LearningRateScheduler setting learning rate to 0.0001913998.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4199 - acc: 0.8535 - val_loss: 0.5515 - val_acc: 0.8212
+Epoch 00047: val_acc improved from 0.88900 to 0.88930, saving model to /content/saved_models/cifar10_ResNet20v1_model.047.h5
 Epoch 48/50
+Learning rate:  0.0001
+391/391 [==============================] - 34s 86ms/step - loss: 0.4024 - acc: 0.9105 - val_loss: 0.4796 - val_acc: 0.8882
 
-Epoch 00048: LearningRateScheduler setting learning rate to 0.0001875821.
-1562/1562 [==============================] - 36s 23ms/step - loss: 0.4164 - acc: 0.8539 - val_loss: 0.5714 - val_acc: 0.8160
+Epoch 00048: val_acc did not improve from 0.88930
 Epoch 49/50
+Learning rate:  0.0001
+391/391 [==============================] - 34s 86ms/step - loss: 0.4011 - acc: 0.9109 - val_loss: 0.4862 - val_acc: 0.8864
 
-Epoch 00049: LearningRateScheduler setting learning rate to 0.0001839137.
-1562/1562 [==============================] - 37s 23ms/step - loss: 0.4176 - acc: 0.8531 - val_loss: 0.5575 - val_acc: 0.8221
+Epoch 00049: val_acc did not improve from 0.88930
 Epoch 50/50
+Learning rate:  0.0001
+391/391 [==============================] - 34s 86ms/step - loss: 0.3961 - acc: 0.9131 - val_loss: 0.4753 - val_acc: 0.8913
 
-Epoch 00050: LearningRateScheduler setting learning rate to 0.000180386.
-1562/1562 [==============================] - 37s 24ms/step - loss: 0.4146 - acc: 0.8541 - val_loss: 0.5704 - val_acc: 0.8199
-Model took 1829.49 seconds to train
-
+Epoch 00050: val_acc improved from 0.88930 to 0.89130, saving model to /content/saved_models/cifar10_ResNet20v1_model.050.h5
+10000/10000 [==============================] - 2s 210us/step
+Test loss: 0.47533659682273866
+Test accuracy: 0.8913
