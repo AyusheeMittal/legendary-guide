@@ -1,4 +1,4 @@
-#Assignment 5 
+# Assignment 5 Result
 
 {'age_output_acc': 0.3805443548387097,
  'age_output_loss': 1.4050314080330633,
